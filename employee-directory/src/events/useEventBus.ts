@@ -25,10 +25,15 @@ export const useEventBus = () => {
 };
 
 // Custom hook for subscribing to a specific event
-export const useEventSubscription = <T>(eventType: EventType, handler: EventHandler<T>) => {
+export const useEventSubscription = <T>(eventType: EventType, handler: EventHandler<T>, deps: any[] = []) => {
   useEffect(() => {
     eventBus.subscribe(eventType, handler);
-  });
+    
+    // Return cleanup function
+    return () => {
+      eventBus.unsubscribe(eventType, handler);
+    };
+  }, [eventType, handler, ...deps]);
 };
 
 // Custom hook for publishing events of a specific type

@@ -31,7 +31,7 @@ const SearchComponent: React.FC = () => {
     
     // Publish filter changed event
     publishFilterChanged(filter);
-  });
+  }, [nameFilter, departmentFilter, statusFilter, publishFilterChanged]);
   
   // Handle input changes
   const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

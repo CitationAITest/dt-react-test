@@ -18,7 +18,7 @@ const EmployeeListComponent: React.FC = () => {
   // Subscribe to EMPLOYEE_FILTER_CHANGED events
   useEventSubscription<EmployeeFilter>(EventType.EMPLOYEE_FILTER_CHANGED, (event) => {
     setFilter(event.payload);
-  });
+  }, []);
   
   // Fetch employees when filter changes
   useEffect(() => {
@@ -33,7 +33,7 @@ const EmployeeListComponent: React.FC = () => {
         console.error('Error fetching employees:', error);
         setLoading(false);
       });
-  });
+  }, [filter]);
   
   // Handle employee selection
   const handleEmployeeSelect = useCallback((employeeId: number) => {
