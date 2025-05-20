@@ -35,7 +35,7 @@ const EmployeeDetailComponent: React.FC = () => {
         setSelectedEmployee(null);
         setLoading(false);
       });
-  });
+  }, []);
   
   // Render loading state
   if (loading) {
